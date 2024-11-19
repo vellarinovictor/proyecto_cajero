@@ -104,4 +104,12 @@ class ClienteController extends Controller
     {
         //
     }
+
+    public function verCuentas($idClientes){
+        $cliente = Cliente::find($idClientes);
+        foreach ($cliente->cuentas as $cuenta) {
+            $respuesta .= $cuenta->numero . "<br>";
+        }
+        return $respuesta;
+    }
 }

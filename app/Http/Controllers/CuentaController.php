@@ -34,6 +34,13 @@ class CuentaController extends Controller
 
         }
     }
+
+    public function verSaldo($idCuenta){
+        $cuenta = Cuenta::belongsTo()->where('id',$idCuenta)->get()->first();
+        $cliente = Cuenta::belongsTo();
+        $request = request();
+        return $this->getSaldo($request,$cliente, $cuenta);
+    }
 }
 
 

@@ -26,15 +26,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Se podrían poner todos estos métodos en un sólo controlador
 // O incluso organizarlos de otra manera
 Route::get('clientes/{cliente}/tarjetas/{numerotarjeta}/pin/{pin}', [TarjetaController::class, 'getLimite']);
-Route::get('clientes/{cliente}/cuentas/{numerocuenta}', [CuentaController::class, 'getSaldo']);
+//Route::get('clientes/{cliente}/cuentas/{numerocuenta}', [CuentaController::class, 'getSaldo']);
 Route::patch('clientes/{cliente}/tarjetas/{tarjeta}/pin/{pin}', [TarjetaController::class, 'update']);  // o changePin
 Route::post('clientes/{cliente}/tarjetas/{tarjeta}/pin/{pin}/movimientos', [MovimientoController::class, 'sacarDinero']); // o store
 Route::get('clientes/{cliente}/tarjetas/{tarjeta}/movimientos',[TarjetaController::class, 'getMovimientos']);
 Route::get('clientes/{cliente}/cuentas/{cuenta}/movimientos', [MovimientoController::class, 'index']);
-Route::get('clientes/{cliente}', [ClienteController::class, 'show']);
-
-
-
+//Route::get('clientes/{cliente}', [ClienteController::class, 'show']);
+Route::get("cliente/{idCliente}", [ClienteController::class, 'verCuentas']);
+Route::get("cuentas/{idCuenta}", [CuentaController::class, 'verSaldo']);
+Route::post("tarjetas/{idTarjeta}", [MovimientoController::class, 'movimientoCajero']);
 
 
 Route::apiResource('clientes',ClienteController::class)->only(['index']);

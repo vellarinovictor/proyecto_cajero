@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movimiento;
 use Illuminate\Http\Request;
 use App\Models\Cuenta;
 
@@ -67,5 +68,14 @@ class MovimientoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function movimientoCajero($idTarjeta){
+        $movimiento = new Movimiento();
+        $movimiento->cantidad = request()->cantidad;
+        $movimiento->tarjeta_id = $idTarjeta;
+        $movimiento->fecha = now();
+        //Comprobamos si: tiene saldo, existe la cuenta, la tarjeta no está expirada
+        $movimiento->save();
     }
 }
